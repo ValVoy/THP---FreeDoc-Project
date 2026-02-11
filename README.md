@@ -13,9 +13,30 @@ The goal of this project is to master **ActiveRecord** and complex database rela
 
 This project implements a robust relational schema to manage doctors, patients, and their interactions across various cities.
 
+Le schéma ERD du projet est fourni dans **`FreeDoc.png`** (diagramme entité-association).
 
+![ERD Projet FreeDoc](FreeDoc.png)
 
-### Model Relationships:
+### Entités et attributs (ERD)
+| Table | Attributs |
+|------|-----------|
+| **CITY** | `name` (string) |
+| **DOCTOR** | `first_name`, `last_name`, `zip_code` (string), `city_id` (FK) |
+| **PATIENT** | `first_name`, `last_name` (string), `city_id` (FK) |
+| **SPECIALTY** | `name` (string) |
+| **APPOINTMENT** | `date` (datetime), `doctor_id`, `patient_id`, `city_id` (FK) |
+| **JOIN_TABLE_DOCTOR_SPECIALTY** | `doctor_id`, `specialty_id` (FK) |
+
+Rails ajoute automatiquement `id` (PK) et `created_at` / `updated_at` sur chaque table. Les clés marquées « H » sur le schéma (ex. `name` pour CITY/SPECIALTY) correspondent en pratique à des contraintes d’unicité ou d’index ; la clé primaire reste `id`.
+
+### Relations (ERD)
+- **CITY** → 1-N → DOCTOR, PATIENT, APPOINTMENT  
+- **DOCTOR** ↔ N-N ↔ SPECIALTY via JOIN_TABLE_DOCTOR_SPECIALTY  
+- **DOCTOR** → 1-N → APPOINTMENT ; **PATIENT** → 1-N → APPOINTMENT (N-N Doctor–Patient via Appointment)
+
+**Note** : Sur le schéma, un trait « has » relie JOIN_TABLE_DOCTOR_SPECIALTY à PATIENT. Cette relation n’est pas implémentée en base (aucun lien métier prévu dans le sujet FreeDoc) ; l’implémentation actuelle est alignée avec le sujet THP.
+
+### Model Relationships (code):
 * **Cities:** A central hub. `Doctors`, `Patients`, and `Appointments` all belong to a `City`.
 * **Doctors & Patients:** Linked via a **Many-to-Many** relationship through `Appointments`.
 * **Specialties:** A **Many-to-Many** relationship between `Doctors` and `Specialties` using a join table (`JoinTableDoctorSpecialty`).
