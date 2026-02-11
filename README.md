@@ -1,5 +1,7 @@
 # 🏥 FreeDoc - The Medical Booking System (Rails Edition)
 
+![Version](https://img.shields.io/badge/version-1.0-blue) ![Ruby](https://img.shields.io/badge/Ruby-3.0+-red) ![Rails](https://img.shields.io/badge/Rails-7.x-red) ![Gems](https://img.shields.io/badge/Gems-faker-green)
+
 Welcome to **FreeDoc**, a database-centric project created as part of **The Hacking Project (THP)** bootcamp.  
 The goal of this project is to master **ActiveRecord** and complex database relationships (1-1, 1-N, and N-N) by building a functional backend clone of a medical appointment platform like Doctolib.
 
@@ -13,12 +15,12 @@ The goal of this project is to master **ActiveRecord** and complex database rela
 
 This project implements a robust relational schema to manage doctors, patients, and their interactions across various cities.
 
-Le schéma ERD du projet est fourni dans **`FreeDoc.png`** (diagramme entité-association).
+The project ERD schema is provided in **`FreeDoc.png`** (entity-relationship diagram).
 
-![ERD Projet FreeDoc](FreeDoc.png)
+![FreeDoc ERD](FreeDoc.png)
 
-### Entités et attributs (ERD)
-| Table | Attributs |
+### Entities and Attributes (ERD)
+| Table | Attributes |
 |------|-----------|
 | **CITY** | `name` (string) |
 | **DOCTOR** | `first_name`, `last_name`, `zip_code` (string), `city_id` (FK) |
@@ -27,14 +29,14 @@ Le schéma ERD du projet est fourni dans **`FreeDoc.png`** (diagramme entité-as
 | **APPOINTMENT** | `date` (datetime), `doctor_id`, `patient_id`, `city_id` (FK) |
 | **JOIN_TABLE_DOCTOR_SPECIALTY** | `doctor_id`, `specialty_id` (FK) |
 
-Rails ajoute automatiquement `id` (PK) et `created_at` / `updated_at` sur chaque table. Les clés marquées « H » sur le schéma (ex. `name` pour CITY/SPECIALTY) correspondent en pratique à des contraintes d’unicité ou d’index ; la clé primaire reste `id`.
+Rails automatically adds `id` (PK) and `created_at` / `updated_at` to each table. Keys marked « H » on the diagram (e.g. `name` for CITY/SPECIALTY) correspond in practice to uniqueness or index constraints; the primary key remains `id`.
 
-### Relations (ERD)
+### Relationships (ERD)
 - **CITY** → 1-N → DOCTOR, PATIENT, APPOINTMENT  
 - **DOCTOR** ↔ N-N ↔ SPECIALTY via JOIN_TABLE_DOCTOR_SPECIALTY  
 - **DOCTOR** → 1-N → APPOINTMENT ; **PATIENT** → 1-N → APPOINTMENT (N-N Doctor–Patient via Appointment)
 
-**Note** : Sur le schéma, un trait « has » relie JOIN_TABLE_DOCTOR_SPECIALTY à PATIENT. Cette relation n’est pas implémentée en base (aucun lien métier prévu dans le sujet FreeDoc) ; l’implémentation actuelle est alignée avec le sujet THP.
+**Note**: On the diagram, a « has » line connects JOIN_TABLE_DOCTOR_SPECIALTY to PATIENT. This relationship is not implemented in the database (no business link intended in the FreeDoc spec); the current implementation is aligned with the THP assignment.
 
 ### Model Relationships (code):
 * **Cities:** A central hub. `Doctors`, `Patients`, and `Appointments` all belong to a `City`.
