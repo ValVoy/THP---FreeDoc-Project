@@ -67,21 +67,21 @@ Doctor.first.specialties
 ```
 
 - Check a Doctor's Patients (N-N through):
-```
-Ruby
+
+```Ruby
 Doctor.first.patients
 ```
 
 - Verify City relationships (1-N):
-```
-Ruby
+
+```Ruby
 City.first.doctors
 City.first.patients
 ```
 
 - Find the Doctor for a specific Appointment:
-```
-Ruby
+
+```Ruby
 Appointment.last.doctor
 ```
 
