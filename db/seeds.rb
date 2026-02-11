@@ -18,7 +18,7 @@ end
 puts "10 villes créées."
 
 # --- CRÉATION DES SPÉCIALITÉS ---
-specialties_list = ["Généraliste","Cardiologue","Dentiste","Ophtalmologue","Psychiatre","Neurologue","Pédiatre"]
+specialties_list = [ "Généraliste", "Cardiologue", "Dentiste", "Ophtalmologue", "Psychiatre", "Neurologue", "Pédiatre" ]
 specialties_list.each do |name|
   Specialty.create!(name: name)
 end
