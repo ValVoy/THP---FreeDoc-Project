@@ -128,7 +128,7 @@ rails console
 
 ## Related projects (THP BDD)
 
-- [The Gossip Project](https://github.com/...) — Gossips, tags, comments, likes, private messages (polymorphic associations).
+- [The Gossip Project](https://github.com/DevRedious/gossip-project) — Gossips, tags, comments, likes, private messages (polymorphic associations).
 - [DogBnB](https://github.com/ff14eternitalis-debug/dogbnb) — Dog rental platform (N-N through Strolls).
 
 ## Authors
